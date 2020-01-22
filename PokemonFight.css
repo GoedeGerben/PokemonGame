@@ -1,5 +1,74 @@
-button {
-	width: 200px;
-	height: 200px;
+*{
+	margin: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	background-color: #40537e;
+}
+
+.buttons {
+	width: 6rem;
+	height: 3rem;
+	margin: 15px auto;
 	border: none;
+	overflow: visible;
+	z-index: 1;
+	position: relative;
+	background-color: #8e2a25;
+	opacity: 0.9;
+}
+
+.buttons:hover {
+	background-color: #ce362e;
+}
+
+#ballButton {
+	z-index: 4;
+	position: relative;
+	margin: 0 auto;
+}
+
+.wrap{
+	margin-left:50%;
+	position:absolute;
+}
+.wrap>img{
+	margin-left:-50%;
+	position:relative;
+}
+
+#pokeball1 {
+	width: 20vw;
+	height: 20vw;
+	z-index: 2;
+	transition: margin 2s ease;
+}
+
+#pokeball2 {
+	width: 20vw;
+	height: 20vw;
+	z-index: 2;
+	transition: margin 2s ease;
+}
+
+.overlay{
+	z-index: 4;
+}
+
+@media(max-width: 678px) {
+#pokeball1 {
+	width: 50vw;
+	height: 50vw;
+	z-index: 2;
+	transition: margin 2s ease;
+}
+
+#pokeball2 {
+	width: 50vw;
+	height: 50vw;
+	z-index: 2;
+	transition: margin 2s ease;
+}
 }
