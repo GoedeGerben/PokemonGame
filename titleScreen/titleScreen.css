@@ -3,16 +3,20 @@
 }
 
 body {
+	background-image: url("../images/TitleScreenBackground.png"); 
 	width: 100vw;
 	height: 100vh;
-	background-color: #40537e;
+	background-size: 1600px 750px;
+	background-repeat: no-repeat;
+	overflow: hidden;
 }
 
 .buttons {
-	width: 6rem;
+	width: 8rem;
 	height: 3rem;
 	margin: 15px auto;
-	border: none;
+	font-size: 25px;
+	border: 2px solid grey;
 	overflow: visible;
 	z-index: 1;
 	position: relative;
@@ -40,15 +44,15 @@ body {
 }
 
 #pokeball1 {
-	width: 20vw;
-	height: 20vw;
+	width: 350px;
+	height: 350px;
 	z-index: 2;
 	transition: margin 2s ease;
 }
 
 #pokeball2 {
-	width: 20vw;
-	height: 20vw;
+	width: 350px;
+	height: 350px;
 	z-index: 2;
 	transition: margin 2s ease;
 }
@@ -57,18 +61,14 @@ body {
 	z-index: 4;
 }
 
-@media(max-width: 678px) {
-#pokeball1 {
-	width: 50vw;
-	height: 50vw;
-	z-index: 2;
-	transition: margin 2s ease;
-}
+@media(min-width: 786px) {
+	#pokeball1 {
+		width: 280px;
+		height: 280px;
+	}
 
-#pokeball2 {
-	width: 50vw;
-	height: 50vw;
-	z-index: 2;
-	transition: margin 2s ease;
-}
+	#pokeball2 {
+		width: 280px;
+		height: 280px;
+	}
 }

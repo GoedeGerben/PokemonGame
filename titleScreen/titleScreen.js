@@ -48,32 +48,31 @@ function openTitle() {
 	for(var elem of buttons){
 		elem.style.display = 'inline-block';
 		elem.style.left = '50%';
-		elem.style.marginLeft = '-3rem';
+		elem.style.marginLeft = '-4rem';
 		elem.style.transition = 'margin 2s ease';
 		setTimeout(function() {
 			elem.classList.add('overlay');
 		}, 500);		
 	}
 
-	
 	setTimeout(function() {
-		button1.style.marginTop = '270px';//help change when screen is small.
+		if (window.innerWidth < 786) {
+			button1.style.marginTop = '275px';
+		}else {
+
+			button1.style.marginTop = '250px';
+		}
 	}, 1);
 
 	setTimeout(function(){
 		button1.classList.add("overlay");
 		button2.classList.add("overlay");
 		button3.classList.add("overlay");
-	}, 1500);
-
-	for(var elem of buttons){
-		
-	}
-
+	}, 3000);
 }//opens the pokeball to reveal the title screen
 
 function settings() {
-
+	window.location.href = "../settings/settings.html";
 }
 
 
@@ -82,5 +81,5 @@ function settings() {
 
 
 function startGame() {
-
+	window.location.href = "../fight/fight.html";
 }
