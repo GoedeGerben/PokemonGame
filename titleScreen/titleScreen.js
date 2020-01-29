@@ -6,19 +6,6 @@ var ballButton = document.getElementById("ballButton");
 var ball1 = document.getElementById("pokeball1");
 var ball2 = document.getElementById("pokeball2");
 
-var HP = 0; //players health
-var EHP = 0; //enemy's health
-
-var atck1 = [0]; //player attack info
-var atck2 = [0];
-var atck3 = [0];
-var atck4 = [0];
-
-var eatck1 = [0]; //enemy attack info
-var eatck2 = [0]; 
-var eatck3 = [0]; 
-var eatck4 = [0];
-
 function pokeBall() {
 	ballButton.innerHTML = "";
 	ballButton.setAttribute("onclick", "openTitle()");
@@ -57,7 +44,7 @@ function openTitle() {
 
 	setTimeout(function() {
 		if (window.innerWidth < 786) {
-			button1.style.marginTop = '275px';
+			button1.style.marginTop = '285px';
 		}else {
 
 			button1.style.marginTop = '250px';
@@ -74,11 +61,6 @@ function openTitle() {
 function settings() {
 	window.location.href = "../settings/settings.html";
 }
-
-
-
-
-
 
 function startGame() {
 	window.location.href = "../fight/fight.html";
