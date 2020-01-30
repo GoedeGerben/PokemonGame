@@ -38,7 +38,13 @@ body{
 }
 
 #epokemon{
-
+	width: 100px;
+	height: 230px;
+	border: 1px solid black;
+	float: right;
+	background-color: red;
+	margin-right: 20vw;
+	margin-top: -10vh;
 }
 
 #container{
@@ -52,7 +58,7 @@ body{
 	width: 180px;
 	height: 80px;
 	float: right;
-	margin-right: 5%;
+	margin-right: -20%;
 	margin-top: 40vh;
 }
 
@@ -78,7 +84,13 @@ body{
 }
 
 #pokemon{
-
+	width: 100px;
+	height: 230px;
+	position: absolute;
+	border: 1px solid black;
+	background-color: blue;
+	margin-top: 20vh;
+	margin-left: 10vw;
 }
 
 #bottom{
@@ -159,14 +171,21 @@ body{
 		left: 0;
 	}
 
-	#bottom {
-		width: 100vh;
-		margin-top: calc(100vw - 173px - 5%);
+	#epokemon {
+		margin-right: 10vh;
+	}
+
+	#pokemon {
+		margin-top: 10vw;
+		margin-left: 10vh;
 	}
 
 	#bar {
 		margin-top: 40vw;
 	}
 
-
+	#bottom {
+		width: 100vh;
+		margin-top: calc(100vw - 173px - 5%);
+	}
 }
