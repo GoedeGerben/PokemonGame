@@ -1,16 +1,21 @@
 var ename = "pikachu";
 var elvl = 10;//enemy's level (just for show)
-var maxEHP = 100;//enemy's max health
-var EHP = 100; //enemy's current health
+var maxEHP = 300;//enemy's max health
+var EHP = 200; //enemy's current health
 
 var name = "pikachu";//this lets the player choose a custom name in the settings.
 var lvl = 10;//players level (just for show)
-var maxHP = 100;//players max health
-var HP = 100; //players current health
+var maxHP = 300;//players max health
+var HP = 200; //players current health
 
-var battleOpen = false; //the state of the battle menu
-var bagOpen = false;
-var pokemonOpen = false;
+var bagOpen = false; //the state of the menu's
+var yourTurn = true;
+
+var pokemon = ["pikachu", "charmander" , "totodile", "geodude"]; 
+
+var currentPokemon = pokemon[0];
+
+var item = ["potion", 20, "super potion", 50, "hyper potion", 200, "max potion", maxHP];
 
 //var atck1 = [name, dmg, effect, life gian, max pp, current pp (how many times an attack can be used)]
 
@@ -31,16 +36,18 @@ var button4 = document.getElementById("op4");
 
 document.getElementById("ename").innerHTML = ename;
 document.getElementById("elvl").innerHTML = elvl;
+document.getElementById("ehpBar").style.width = EHP/maxEHP*document.getElementById("ehpBarGrey").clientWidth + "px"; //adjusts the hpbar
 
 document.getElementById("name").innerHTML = name;
 document.getElementById("lvl").innerHTML = lvl;
 document.getElementById("hp").innerHTML = HP + " / " + maxHP;
+document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
 
 document.getElementById("text").innerHTML ="What will " + name + " do?";
 
 function battleButtons() {
 
-	battleOpen = true;
+	bagOpen = true;
 
 	button1.innerHTML = atck1[0];
 	button1.setAttribute("onclick" , "options(atck1)");
@@ -64,6 +71,7 @@ if (battleOpen == true || bagOpen == true || pokemonOpen == true &&  e.keyCode =
 });//if the enter key is pressed while the player is in a menu they get sent back to the options
 
 function options() {
+	yourTurn = false;
 	optionButtons()
 	atck1[5] = atck1[5] - 1;
 
@@ -78,34 +86,53 @@ function options() {
 	}else {
 		HP = maxHP;
 	}
-	console.log(EHP);
-	console.log(HP);
 
 	document.getElementById("ehpBar").style.width = EHP/maxEHP*document.getElementById("ehpBarGrey").clientWidth + "px"; //adjusts the hpbar
 	document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
+	document.getElementById("hp").innerHTML = HP + " / " + maxHP;
 	//make max uses
 }//Uses your attack
 
-
-
-
 function bagButtons() {
-	//heal item 1
-	//heal item 2
-	//heal item 3
-	//heal item 4
-	//back
+	button1.innerHTML = item[0];
+	button1.setAttribute("onclick" , "use(1)");
+	
+	button2.innerHTML = item[2];
+	button2.setAttribute("onclick" , "use(3)");
+	
+	button3.innerHTML = item[4];
+	button3.setAttribute("onclick" , "use(5)");
+
+	button4.innerHTML = item[6];
+	button4.setAttribute("onclick" , "use(7)");
 }//makes you look inside your bag
 
+function use() {
+	if ((HP + item[arguments[0]]) <= maxHP) {
+		HP = HP + item[arguments[0]];
+	}else {
+		HP = maxHP;
+	}
+	document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
+	document.getElementById("hp").innerHTML = HP + " / " + maxHP;
+}
+
 function pokemonButtons() {
-	//pokemon 1
-	//pokemon 2
-	//pokemon 3
-	//pokemon 4
-	//back
+	button1.innerHTML = pokemon1;
+	button1.setAttribute("onclick" , "currentPokemon = pokemon[0]");
+	
+	button2.innerHTML = pokemon2;
+	button2.setAttribute("onclick" , "currentPokemon = pokemon[1]");
+	
+	button3.innerHTML = pokemon3;
+	button3.setAttribute("onclick" , "currentPokemon = pokemon[2]");
+
+	button4.innerHTML = pokemon4;
+	button4.setAttribute("onclick" , "currentPokemon = pokemon[3]");
 }//need to make an array to contain pokemon data
 
 function optionButtons() {
+	bagOpen = false;
 	button1.innerHTML = "FIGHT";
 	button1.setAttribute("onclick" , "battleButtons()");
 	
