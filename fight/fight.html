@@ -10,6 +10,7 @@
 			<div id="ename">name</div>
 			<div id="elvl">Lv99</div>
 			<div id="ehpBar"></div>
+			<div id="ehpBarGrey"></div>
 		</div>
 
 		<div id="epokemon"></div>
@@ -22,18 +23,19 @@
 			<div id="name">name</div>
 			<div id="lvl">Lv99</div>
 			<div id="hpBar"></div>
+			<div id="hpBarGrey"></div>
 			<div id="hp">999/999</div>
 		</div>
 	</div>
 
 	<div id="bottom">
-		<div id="text">What will <div class="tname">name</div> do?</div>
+		<div id="text">What will <div id="tname">name</div> do?</div>
 
 		<div id="attackButtons">
-			<div id="op1">FIGHT</div>
-			<div id="op2">BAG</div>
-			<div id="op3">POKEMON</div>
-			<div id="op4">RUN</div>
+			<div id="op1" onclick="battleButtons()">FIGHT</div>
+			<div id="op2" onclick="bagButtons()">BAG</div>
+			<div id="op3" onclick="pokemonButtons()">POKEMON</div>
+			<div id="op4" onclick="titleScreen()">RUN</div>
 		</div>
 	</div>
 

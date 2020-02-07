@@ -35,6 +35,15 @@ body{
 	border: 1px solid grey;
 	transition: margin 1s ease;
 	margin-left: 10px;
+	position: absolute;
+}
+
+#ehpBarGrey{
+	width: 120px;
+	height: 5px;
+	background-color: grey;
+	border: 1px solid grey;
+	margin-left: 10px;
 }
 
 #epokemon{
@@ -45,10 +54,6 @@ body{
 	background-color: red;
 	margin-right: 20vw;
 	margin-top: -10vh;
-}
-
-#container{
-
 }
 
 #bar{
@@ -76,6 +81,15 @@ body{
 	background-color: lime;
 	border: 1px solid grey;
 	transition: margin 1s ease;
+	margin-left: 10px;
+	position: absolute;
+}
+
+#hpBarGrey{
+	width: 120px;
+	height: 5px;
+	background-color: grey;
+	border: 1px solid grey;
 	margin-left: 10px;
 }
 
@@ -108,7 +122,7 @@ body{
 }
 
 #tname{
-	position: absolute;
+	
 }
 
 
@@ -125,25 +139,25 @@ body{
 #op1{
 	position: relative;
 	float: left;
-	margin-left: 60px;
+	margin-left: 70px;
 }
 
 #op2{
 	position: relative;
 	float: right;
-	margin-right: 60px;
+	margin-right: 70px;
 }
 
 #op3{
 	position: relative;
 	float: left;
-	margin-left: 60px;
+	margin-left: 70px;
 }
 
 #op4{
 	position: relative;
 	float: right;
-	margin-right: 60px;
+	margin-right: 70px;
 }
 
 @media(max-width: 880px){
@@ -188,4 +202,12 @@ body{
 		width: 100vh;
 		margin-top: calc(100vw - 173px - 5%);
 	}
+
+	#op1{margin-left: 50px;}
+
+	#op2{margin-right: 50px;}
+
+	#op3{margin-left: 50px;}
+
+	#op4{margin-right: 50px;}
 }
