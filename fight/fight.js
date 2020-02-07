@@ -36,7 +36,7 @@ document.getElementById("name").innerHTML = name;
 document.getElementById("lvl").innerHTML = lvl;
 document.getElementById("hp").innerHTML = HP + " / " + maxHP;
 
-document.getElementById("tname").innerHTML = name;
+document.getElementById("text").innerHTML ="What will " + name + " do?";
 
 function battleButtons() {
 
@@ -64,6 +64,7 @@ if (battleOpen == true || bagOpen == true || pokemonOpen == true &&  e.keyCode =
 });//if the enter key is pressed while the player is in a menu they get sent back to the options
 
 function options() {
+	optionButtons()
 	atck1[5] = atck1[5] - 1;
 
 	if (EHP - atck1[1] >= 0) {
@@ -105,6 +106,17 @@ function pokemonButtons() {
 }//need to make an array to contain pokemon data
 
 function optionButtons() {
+	button1.innerHTML = "FIGHT";
+	button1.setAttribute("onclick" , "battleButtons()");
+	
+	button2.innerHTML = "BAG";
+	button2.setAttribute("onclick" , "bagButtons()");
+	
+	button3.innerHTML = "POKEMON";
+	button3.setAttribute("onclick" , "pokemonButtons()");
+
+	button4.innerHTML = "RUN";
+	button4.setAttribute("onclick" , "titleScreen()");
 
 }//makes you go back to the menu where you can choose what you want to do
 

@@ -119,12 +119,8 @@ body{
 #text{
 	width: 50vw;
 	position: absolute;
+	padding: 10px 10px;
 }
-
-#tname{
-	
-}
-
 
 #attackButtons{
 	border: 4px solid grey;
