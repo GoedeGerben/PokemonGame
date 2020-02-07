@@ -43,7 +43,7 @@ document.getElementById("lvl").innerHTML = lvl;
 document.getElementById("hp").innerHTML = HP + " / " + maxHP;
 document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
 
-document.getElementById("text").innerHTML ="What will " + name + " do?";
+document.getElementById("text").innerHTML = "What will " + name + " do?";
 
 function battleButtons() {
 
@@ -61,11 +61,11 @@ function battleButtons() {
 	button4.innerHTML = atck4[0];
 	button4.setAttribute("onclick" , "options(atck4)");
 
-	//make a button that makes you go back to the option screen
+	document.getElementById("text").innerHTML = "What attack will " + name + " use?"
 }//makes you look at your attacks
 
 document.addEventListener("keypress", function(e) { 	
-if (battleOpen == true || bagOpen == true || pokemonOpen == true &&  e.keyCode == "13") {
+if (bagOpen == true &&  e.keyCode == "13") {
 	optionButtons();
 }
 });//if the enter key is pressed while the player is in a menu they get sent back to the options
@@ -94,6 +94,8 @@ function options() {
 }//Uses your attack
 
 function bagButtons() {
+	bagOpen = true;
+
 	button1.innerHTML = item[0];
 	button1.setAttribute("onclick" , "use(1)");
 	
@@ -105,6 +107,8 @@ function bagButtons() {
 
 	button4.innerHTML = item[6];
 	button4.setAttribute("onclick" , "use(7)");
+
+	document.getElementById("text").innerHTML = "What item will you use?"
 }//makes you look inside your bag
 
 function use() {
@@ -113,23 +117,37 @@ function use() {
 	}else {
 		HP = maxHP;
 	}
+
 	document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
 	document.getElementById("hp").innerHTML = HP + " / " + maxHP;
+
+	optionButtons();
 }
 
 function pokemonButtons() {
-	button1.innerHTML = pokemon1;
-	button1.setAttribute("onclick" , "currentPokemon = pokemon[0]");
+	bagOpen = true;
+	button1.innerHTML = pokemon[0];
+	button1.setAttribute("onclick" , "changePokemon(0)");
 	
-	button2.innerHTML = pokemon2;
-	button2.setAttribute("onclick" , "currentPokemon = pokemon[1]");
+	button2.innerHTML = pokemon[1];
+	button2.setAttribute("onclick" , "changePokemon(1)");
 	
-	button3.innerHTML = pokemon3;
-	button3.setAttribute("onclick" , "currentPokemon = pokemon[2]");
+	button3.innerHTML = pokemon[2];
+	button3.setAttribute("onclick" , "changePokemon(2)");
 
-	button4.innerHTML = pokemon4;
-	button4.setAttribute("onclick" , "currentPokemon = pokemon[3]");
+	button4.innerHTML = pokemon[3];
+	button4.setAttribute("onclick" , "changePokemon(3)");
+
+	document.getElementById("text").innerHTML = "What pokemon will you use?"
 }//need to make an array to contain pokemon data
+
+function changePokemon() {
+	currentPokemon = pokemon[arguments[0]];
+	name = pokemon[arguments[0]];
+	document.getElementById("name").innerHTML = name;
+
+	optionButtons();
+}
 
 function optionButtons() {
 	bagOpen = false;
@@ -145,6 +163,7 @@ function optionButtons() {
 	button4.innerHTML = "RUN";
 	button4.setAttribute("onclick" , "titleScreen()");
 
+	document.getElementById("text").innerHTML = "What will " + name + " do?";
 }//makes you go back to the menu where you can choose what you want to do
 
 function titleScreen() {
