@@ -33,7 +33,7 @@ body{
 	height: 5px;
 	background-color: lime;
 	border: 1px solid grey;
-	transition: margin 1s ease;
+	transition: all 1s linear;
 	margin-left: 10px;
 	position: absolute;
 }
@@ -80,7 +80,7 @@ body{
 	height: 5px;
 	background-color: lime;
 	border: 1px solid grey;
-	transition: margin 1s ease;
+	transition: all 1s linear;
 	margin-left: 10px;
 	position: absolute;
 }

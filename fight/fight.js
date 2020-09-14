@@ -26,14 +26,14 @@ var attacks = {
 	atck1: ["tackle", 10, 0, 0, 10, 10],
 	atck2: ["tackle", 10, 0, 0, 10, 10],
 	atck3: ["tackle", 10, 0, 0, 10, 10],
-	atck4: ["tackle", 10, 0, 0, 10, 10]
+	atck4: ["tickle", 100, 0, 0, 10, 10]
 }
 
 var eattacks = {
 	atck1: ["tackle", 10, 0, 0, 10, 10],
 	atck2: ["tackle", 10, 0, 0, 10, 10],
 	atck3: ["tackle", 10, 0, 0, 10, 10],
-	atck4: ["tackle", 10, 0, 0, 10, 10]
+	atck4: ["tickle", 100, 0, 0, 10, 10]
 }
 
 var button1 = document.getElementById("op1");
@@ -92,13 +92,24 @@ function options() {
 		}else {
 			HP = maxHP;
 		}
+		button1.innerHTML = "";
+		button1.removeAttribute("onclick");
+		
+		button2.innerHTML = "";
+		button2.removeAttribute("onclick");
+		
+		button3.innerHTML = "";
+		button3.removeAttribute("onclick");
+
+		button4.innerHTML = "";
+		button4.removeAttribute("onclick");
 
 		document.getElementById("ehpBar").style.width = EHP/maxEHP*document.getElementById("ehpBarGrey").clientWidth + "px"; //adjusts the hpbar
 		document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
 		document.getElementById("hp").innerHTML = HP + " / " + maxHP;
 		document.getElementById("text").innerHTML = "" + name + " used " + arguments[0][0] + "";
 		pokemon[currentPokemon[1]][3] = HP;
-		enemyTurn()
+		setTimeout(enemyTurn, 2500);
 	}else {
 		document.getElementById("text").innerHTML = "You dont have any more uses left for this attack.";
 	}
@@ -187,7 +198,9 @@ function optionButtons() {
 }//makes you go back to the menu where you can choose what you want to do
 
 function titleScreen() {
-	window.location.href = "../titleScreen/titleScreen.html";
+	if (confirm("Are yo sure you want to go back to the menu? Your progress will NOT be saved.")) {
+  		window.location.href = "../titleScreen/titleScreen.html";
+	}
 }//brings you back to the title screen
 
 function enemyTurn() {
@@ -206,7 +219,12 @@ function enemyTurn() {
 			EHP = maxEHP;
 		}
 
+		document.getElementById("ehpBar").style.width = EHP/maxEHP*document.getElementById("ehpBarGrey").clientWidth + "px"; //adjusts the hpbar
+		document.getElementById("hpBar").style.width = HP/maxHP*document.getElementById("hpBarGrey").clientWidth + "px"; //adjusts the hpbar
+		document.getElementById("hp").innerHTML = HP + " / " + maxHP;
+		document.getElementById("text").innerHTML = "The enemy " + ename + " used " + whatAttack[0] + "";
+		pokemon[currentPokemon[1]][3] = HP;
 		
 	
-	setTimeout(optionButtons(), 4000);
+	setTimeout(optionButtons, 2500);
 }
