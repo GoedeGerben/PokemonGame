@@ -8,16 +8,38 @@ class Pokemon {
 		this.weakness = weakness;
 		this.resistance = resistance;
 	}
+	newhealth(dmg, type) {
+		var dmgModifier = 1;
+		if(type == this.weakness) {
+			dmgModifier = 1.5;
+		} else if(type == this.resistance) {
+			dmgModifier = 0.5;
+		}
+
+		this.health = this.health - (dmg * dmgModifier);
+		return this.health;
+	}
 }
 
-let myPokemon = new Pokemon("pikachu", "lightning", 60, 60, "electric ring, pika punch", "fire", "fighting")
+let pikachu = new Pokemon("bert", "lightning", 60, 60, "electric ring, pika punch", "fire", "fighting")
+let charmeleon = new Pokemon("geert", "fire", 60, 60, "Head Butt, Flare", "water", "lightning")
 
-console.log(myPokemon);
-myPokemon.health = 12;
-console.log(myPokemon.health);
-myPokemon.health = 2;
-console.log(myPokemon.health);
-console.log(myPokemon)
+console.log(pikachu.newhealth(12, "fire"));
+
+/* 
+class energy {
+	constructor(name, weakness, resistance){
+		this.name = name;
+		this.weakness = weakness;
+		this.resistance = resistance;
+	}
+}
+
+let lightning = new energy("lightning", "fire", "fighting")
+let fire = new energy("fire", "water", "lightning")
+let water = new energy("water", "fighting", "fire")
+let fighting = new energy("fire", "lightning", "water")
+ */
 
 var ename = "pikachu";
 var elvl = 10;//enemy's level (just for show)
