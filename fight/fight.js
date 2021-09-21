@@ -1,3 +1,24 @@
+class Pokemon {
+	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance){
+		this.name = name;
+		this.energyType = energyType;
+		this.hitpoints = hitpoints;
+		this.health = hitpoints;
+		this.attacks = attacks;
+		this.weakness = weakness;
+		this.resistance = resistance;
+	}
+}
+
+let myPokemon = new Pokemon("pikachu", "lightning", 60, 60, "electric ring, pika punch", "fire", "fighting")
+
+console.log(myPokemon);
+myPokemon.health = 12;
+console.log(myPokemon.health);
+myPokemon.health = 2;
+console.log(myPokemon.health);
+console.log(myPokemon)
+
 var ename = "pikachu";
 var elvl = 10;//enemy's level (just for show)
 var maxEHP = 300;//enemy's max health
