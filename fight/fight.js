@@ -1,10 +1,13 @@
 class Pokemon {
-	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance){
+	constructor(name, energyType, hitpoints, health, attack1, attack2, attack3, attack4, weakness, resistance){
 		this.name = name;
 		this.energyType = energyType;
 		this.hitpoints = hitpoints;
 		this.health = hitpoints;
-		this.attacks = attacks;
+		this.attack1 = attack1;
+		this.attack2 = attack2;
+		this.attack3 = attack3;
+		this.attack4 = attack4;
 		this.weakness = weakness;
 		this.resistance = resistance;
 	}
@@ -17,16 +20,21 @@ class Pokemon {
 		}
 
 		this.health = this.health - (dmg * dmgModifier);
-		return this.health;
+
+		if(this.health >= 0){
+			return this.health;
+		} else {
+			this.health = 0;
+			return 0;
+		}
+	}
+	getPopulation() {
+	}
+	getPopulationHealth() {
+		
 	}
 }
 
-let pikachu = new Pokemon("bert", "lightning", 60, 60, "electric ring, pika punch", "fire", "fighting")
-let charmeleon = new Pokemon("geert", "fire", 60, 60, "Head Butt, Flare", "water", "lightning")
-
-console.log(pikachu.newhealth(12, "fire"));
-
-/* 
 class energy {
 	constructor(name, weakness, resistance){
 		this.name = name;
@@ -35,11 +43,26 @@ class energy {
 	}
 }
 
+class attack {
+	constructor(name, energy, dmg){
+		this.name = name;
+		this.energy = energy;
+		this.dmg = dmg;
+	}
+}
+
 let lightning = new energy("lightning", "fire", "fighting")
 let fire = new energy("fire", "water", "lightning")
 let water = new energy("water", "fighting", "fire")
 let fighting = new energy("fire", "lightning", "water")
- */
+
+let electricRing = new attack("electric ring", lightning, 20)
+let pikaPunch = new attack("pika punch", fighting, 20)
+let headButt = new attack("head butt", fighting, 20)
+let flare = new attack("flare", fire, 20)
+
+let pikachu = new Pokemon("bert", "lightning", 60, 60, electricRing, pikaPunch, "", "", fire, fighting)
+let charmeleon = new Pokemon("geert", "fire", 60, 60, headButt, flare, "", "", water, lightning)
 
 var ename = "pikachu";
 var elvl = 10;//enemy's level (just for show)
