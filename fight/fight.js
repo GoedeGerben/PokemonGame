@@ -1,40 +1,55 @@
+var pokeCount = 0;
 class Pokemon {
+	#name;
+	#energyType;
+	#hitpoints;
+	#health;
+	#attack1;
+	#attack2;
+	#attack3;
+	#attack4;
+	#weakness;
+	#resistance;
+
 	constructor(name, energyType, hitpoints, health, attack1, attack2, attack3, attack4, weakness, resistance){
-		this.name = name;
-		this.energyType = energyType;
-		this.hitpoints = hitpoints;
-		this.health = hitpoints;
-		this.attack1 = attack1;
-		this.attack2 = attack2;
-		this.attack3 = attack3;
-		this.attack4 = attack4;
-		this.weakness = weakness;
-		this.resistance = resistance;
+		this.#name = name;
+		this.#energyType = energyType;
+		this.#hitpoints = hitpoints;
+		this.#health = hitpoints;
+		this.#attack1 = attack1;
+		this.#attack2 = attack2;
+		this.#attack3 = attack3;
+		this.#attack4 = attack4;
+		this.#weakness = weakness;
+		this.#resistance = resistance;
+		pokeCount++
 	}
-	newhealth(dmg, type) {
+	#newhealth(dmg, type) {
 		var dmgModifier = 1;
-		if(type == this.weakness) {
+		if(type == this.#weakness) {
 			dmgModifier = 1.5;
-		} else if(type == this.resistance) {
+		} else if(type == this.#resistance) {
 			dmgModifier = 0.5;
 		}
 
-		this.health = this.health - (dmg * dmgModifier);
+		this.#health = this.#health - (dmg * dmgModifier);
 
-		if(this.health >= 0){
-			return this.health;
+		if(this.#health >= 0){
+			return this.#health;
 		} else {
-			this.health = 0;
+			this.#health = 0;
+			pokeCount - 1;
 			return 0;
 		}
 	}
 	attack(dmg, type, enemy) {
-		return enemy.newhealth(dmg, type)
+		return enemy.#newhealth(dmg, type)
 	}
 	getPopulation() {
+		return pokeCount;
 	}
-	getPopulationHealth() {
-		
+	getInfo(){
+		console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance);
 	}
 }
 
@@ -57,16 +72,19 @@ class attack {
 let lightning = new energy("lightning", "fire", "fighting")
 let fire = new energy("fire", "water", "lightning")
 let water = new energy("water", "fighting", "fire")
-let fighting = new energy("fire", "lightning", "water")
+let fighting = new energy("fighting", "lightning", "water")
 
 let electricRing = new attack("electric ring", lightning, 20)
 let pikaPunch = new attack("pika punch", fighting, 20)
 let headButt = new attack("head butt", fighting, 20)
 let flare = new attack("flare", fire, 20)
 
-let pikachu = new Pokemon("bert", "lightning", 60, 60, electricRing, pikaPunch, "", "", fire, fighting)
-let charmeleon = new Pokemon("geert", "fire", 60, 60, headButt, flare, "", "", water, lightning)
+let pikachu = new Pokemon("bert", lightning, 60, 60, electricRing, pikaPunch, "", "", fire, fighting)
+let charmeleon = new Pokemon("geert", fire, 60, 60, headButt, flare, "", "", water, lightning)
 
+
+
+/* Hier onder is het begin van het daadwerkelijke gevecht */
 var ename = "pikachu";
 var elvl = 10;//enemy's level (just for show)
 var maxEHP = 300;//enemy's max health
