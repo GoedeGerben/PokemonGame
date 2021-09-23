@@ -34,22 +34,26 @@ class Pokemon {
 
 		this.#health = this.#health - (dmg * dmgModifier);
 
-		if(this.#health >= 0){
+		if(this.#health >= 1){
 			return this.#health;
 		} else {
+			//hier moet een function komen voor de death animatie
+			console.log(this.#name + " has fainted... F")
 			this.#health = 0;
-			pokeCount - 1;
+			pokeCount = pokeCount - 1;
 			return 0;
 		}
 	}
-	attack(dmg, type, enemy) {
-		return enemy.#newhealth(dmg, type)
+	attack(atck, enemy) {
+		
+		return enemy.#newhealth(atck.dmg, atck.energy)
 	}
 	getPopulation() {
 		return pokeCount;
 	}
 	getInfo(){
-		console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance);
+		console.log(this.#name + "'s health is "+ this.#health)
+		/* console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance); */
 	}
 }
 
@@ -74,15 +78,55 @@ let fire = new energy("fire", "water", "lightning")
 let water = new energy("water", "fighting", "fire")
 let fighting = new energy("fighting", "lightning", "water")
 
-let electricRing = new attack("electric ring", lightning, 20)
+let electricRing = new attack("electric ring", lightning, 50)
 let pikaPunch = new attack("pika punch", fighting, 20)
-let headButt = new attack("head butt", fighting, 20)
-let flare = new attack("flare", fire, 20)
+let headButt = new attack("head butt", fighting, 10)
+let flare = new attack("flare", fire, 30)
 
 let pikachu = new Pokemon("bert", lightning, 60, 60, electricRing, pikaPunch, "", "", fire, fighting)
 let charmeleon = new Pokemon("geert", fire, 60, 60, headButt, flare, "", "", water, lightning)
 
+function killThatPokemon() {
+	pikachu.attack(electricRing, charmeleon)
+	charmeleon.getInfo();
 
+	charmeleon.attack(flare, pikachu)
+	pikachu.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pikachu.attack(pikaPunch, charmeleon)
+	charmeleon.getInfo();
+
+	charmeleon.attack(headButt, pikachu)
+	pikachu.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pikachu.attack(electricRing, charmeleon)
+	charmeleon.getInfo();
+
+	charmeleon.attack(flare, pikachu)
+	pikachu.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pikachu.attack(pikaPunch, charmeleon)
+	charmeleon.getInfo();
+
+	charmeleon.attack(headButt, pikachu)
+	pikachu.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pikachu.attack(electricRing, charmeleon)
+	charmeleon.getInfo();
+
+	charmeleon.attack(flare, pikachu)
+	pikachu.getInfo();
+
+	console.log("the 2 turns have ended.")
+}
 
 /* Hier onder is het begin van het daadwerkelijke gevecht */
 var ename = "pikachu";
