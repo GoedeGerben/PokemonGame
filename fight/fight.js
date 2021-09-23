@@ -28,6 +28,9 @@ class Pokemon {
 			return 0;
 		}
 	}
+	attack(dmg, type, enemy) {
+		return enemy.newhealth(dmg, type)
+	}
 	getPopulation() {
 	}
 	getPopulationHealth() {
