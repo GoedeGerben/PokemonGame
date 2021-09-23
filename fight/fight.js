@@ -1,29 +1,46 @@
 var pokeCount = 0;
+// kijken of de pokemon de opgeroepen attack daadwerkelijk heeft & 
+// static voor de getPopulation() &
+// Inheritance voor ???
+/**
+ * @constructor
+ * @extends
+ */
 class Pokemon {
 	#name;
 	#energyType;
 	#hitpoints;
 	#health;
-	#attack1;
-	#attack2;
-	#attack3;
-	#attack4;
+	#attacks;
 	#weakness;
 	#resistance;
-
-	constructor(name, energyType, hitpoints, health, attack1, attack2, attack3, attack4, weakness, resistance){
+	/**
+	 * constructor that construct a new pokemon.
+	 * 
+	 * @param {string} name the cuntom of the pokemon.
+	 * @param {object} energyType the energy type of the pokemon.
+	 * @param {number} hitpoints the maximum hp of the pokemon.
+	 * @param {number} health the current health of the pokemon.
+	 * @param {Array} attacks the attacks the pokemon has .
+	 * @param {object} weakness the energy type the pokemon is weak against.
+	 * @param {object} resistance the energy type the pokemon is strong against.
+	 */
+	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance){
 		this.#name = name;
 		this.#energyType = energyType;
 		this.#hitpoints = hitpoints;
 		this.#health = hitpoints;
-		this.#attack1 = attack1;
-		this.#attack2 = attack2;
-		this.#attack3 = attack3;
-		this.#attack4 = attack4;
+		this.#attacks = attacks;
 		this.#weakness = weakness;
 		this.#resistance = resistance;
 		pokeCount++
 	}
+	/**
+	 * 
+	 * @param {number} dmg the demage the attack does.
+	 * @param {object} type the energy type of the attack.
+	 * @returns the pokemons new health.
+	 */
 	#newhealth(dmg, type) {
 		var dmgModifier = 1;
 		if(type == this.#weakness) {
@@ -44,19 +61,34 @@ class Pokemon {
 			return 0;
 		}
 	}
+	/**
+	 * 
+	 * @param {object} atck the attack that is being used. 
+	 * @param {object} enemy the enemy that is being attacked.
+	 * @returns the new health of the attacked enemy.
+	 */
 	attack(atck, enemy) {
 		
 		return enemy.#newhealth(atck.dmg, atck.energy)
 	}
+	/**
+	 * 
+	 * @returns the amount of living pokemon.
+	 */
 	getPopulation() {
 		return pokeCount;
 	}
+	/**
+	 * logs the name and health of a pokemon object in the console.
+	 */
 	getInfo(){
 		console.log(this.#name + "'s health is "+ this.#health)
 		/* console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance); */
 	}
 }
-
+/**
+ * 
+ */
 class energy {
 	constructor(name, weakness, resistance){
 		this.name = name;
@@ -64,7 +96,9 @@ class energy {
 		this.resistance = resistance;
 	}
 }
-
+/**
+ * 
+ */
 class attack {
 	constructor(name, energy, dmg){
 		this.name = name;
@@ -83,8 +117,11 @@ let pikaPunch = new attack("pika punch", fighting, 20)
 let headButt = new attack("head butt", fighting, 10)
 let flare = new attack("flare", fire, 30)
 
-let pikachu = new Pokemon("bert", lightning, 60, 60, electricRing, pikaPunch, "", "", fire, fighting)
-let charmeleon = new Pokemon("geert", fire, 60, 60, headButt, flare, "", "", water, lightning)
+var pikachuAttacks = [electricRing, pikaPunch];
+var charmeleonAttacks = [headButt, flare];
+
+let pikachu = new Pokemon("bert", lightning, 60, 60, pikachuAttacks, fire, fighting)
+let charmeleon = new Pokemon("geert", fire, 60, 60, charmeleonAttacks, water, lightning)
 
 function killThatPokemon() {
 	pikachu.attack(electricRing, charmeleon)
