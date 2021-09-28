@@ -14,6 +14,7 @@ class Pokemon {
 	#attacks;
 	#weakness;
 	#resistance;
+	#status;
 	/**
 	 * constructor that construct a new pokemon.
 	 * 
@@ -25,7 +26,7 @@ class Pokemon {
 	 * @param {object} weakness the energy type the pokemon is weak against.
 	 * @param {object} resistance the energy type the pokemon is strong against.
 	 */
-	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance){
+	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance, status){
 		this.#name = name;
 		this.#energyType = energyType;
 		this.#hitpoints = hitpoints;
@@ -33,7 +34,16 @@ class Pokemon {
 		this.#attacks = attacks;
 		this.#weakness = weakness;
 		this.#resistance = resistance;
+		this.#status = status;
 		pokeCount++
+	}
+	death(enemy) {
+		//hier moet een function komen voor de death animatie
+		console.log(this.#name + " has fainted... F")
+		this.#health = 0;
+		this.#status = "dead";
+		pokeCount = pokeCount - 1;
+		return 0;
 	}
 	/**
 	 * 
@@ -41,7 +51,7 @@ class Pokemon {
 	 * @param {object} type the energy type of the attack.
 	 * @returns the pokemons new health.
 	 */
-	#newhealth(dmg, type) {
+	#newhealth(dmg, type, enemy) {
 		var dmgModifier = 1;
 		if(type == this.#weakness) {
 			dmgModifier = 1.5;
@@ -49,17 +59,15 @@ class Pokemon {
 			dmgModifier = 0.5;
 		}
 
-		this.#health = this.#health - (dmg * dmgModifier);
-
-		if(this.#health >= 1){
+		if(this.#health - (dmg * dmgModifier) >= 1){
+			this.#health = this.#health - (dmg * dmgModifier);
 			return this.#health;
-		} else {
-			//hier moet een function komen voor de death animatie
-			console.log(this.#name + " has fainted... F")
-			this.#health = 0;
-			pokeCount = pokeCount - 1;
-			return 0;
+		} else if (enemy.#status == "dead") {
+			console.log("He's already dead!")
+		}else {
+			enemy.death(enemy);
 		}
+		//pikachu.attack(headButt, charmeleon)
 	}
 	/**
 	 * 
@@ -69,20 +77,21 @@ class Pokemon {
 	 */
 	attack(atck, enemy) {
 		
-		return enemy.#newhealth(atck.dmg, atck.energy)
+		return enemy.#newhealth(atck.dmg, atck.energy, enemy)
 	}
 	/**
 	 * 
 	 * @returns the amount of living pokemon.
 	 */
-	getPopulation() {
+	static getPopulation() {
 		return pokeCount;
-	}
+	}//Pokemon.getPopulation()
 	/**
 	 * logs the name and health of a pokemon object in the console.
 	 */
 	getInfo(){
 		console.log(this.#name + "'s health is "+ this.#health)
+		console.log(this.#status)
 		/* console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance); */
 	}
 }
@@ -120,8 +129,8 @@ let flare = new attack("flare", fire, 30)
 var pikachuAttacks = [electricRing, pikaPunch];
 var charmeleonAttacks = [headButt, flare];
 
-let pikachu = new Pokemon("bert", lightning, 60, 60, pikachuAttacks, fire, fighting)
-let charmeleon = new Pokemon("geert", fire, 60, 60, charmeleonAttacks, water, lightning)
+let pikachu = new Pokemon("bert", lightning, 60, 60, pikachuAttacks, fire, fighting, "alive")
+let charmeleon = new Pokemon("geert", fire, 60, 60, charmeleonAttacks, water, lightning, "alive")
 
 function killThatPokemon() {
 	pikachu.attack(electricRing, charmeleon)
