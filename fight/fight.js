@@ -1,6 +1,5 @@
 var pokeCount = 0;
 // kijken of de pokemon de opgeroepen attack daadwerkelijk heeft & 
-// static voor de getPopulation() &
 // Inheritance voor ???
 /**
  * @constructor
@@ -76,10 +75,10 @@ class Pokemon {
 	 * @returns the new health of the attacked enemy.
 	 */
 	attack(atck, enemy) {
-		if (this.#status == 'alive') {
+		if (this.#status == 'alive' && this.#attacks.includes(atck)) {
 		return enemy.#newhealth(atck.dmg, atck.energy, enemy)
 		} else {
-			console.log("you can't attack when you're dead")
+			console.log("you can't attack when you're dead or with an attack you dont have")
 		}
 	
 	}
