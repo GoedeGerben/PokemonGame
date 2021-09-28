@@ -76,8 +76,12 @@ class Pokemon {
 	 * @returns the new health of the attacked enemy.
 	 */
 	attack(atck, enemy) {
-		
+		if (this.#status == 'alive') {
 		return enemy.#newhealth(atck.dmg, atck.energy, enemy)
+		} else {
+			console.log("you can't attack when you're dead")
+		}
+	
 	}
 	/**
 	 * 
@@ -92,6 +96,7 @@ class Pokemon {
 	getInfo(){
 		console.log(this.#name + "'s health is "+ this.#health)
 		console.log(this.#status)
+		console.log(Pokemon.getPopulation())
 		/* console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance); */
 	}
 }
