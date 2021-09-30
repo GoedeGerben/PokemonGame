@@ -1,11 +1,41 @@
-var pokeCount = 0;
-// kijken of de pokemon de opgeroepen attack daadwerkelijk heeft & 
-// Inheritance voor ???
+/**
+ * 
+ */
+ class Energy {
+	constructor(name, weakness, resistance){
+		this.name = name;
+		this.weakness = weakness;
+		this.resistance = resistance;
+	}
+}
+/**
+ * 
+ */
+class Attack {
+	//alle attacks hier defineren
+	constructor(name, energy, dmg){
+		this.name = name;
+		this.energy = energy;
+		this.dmg = dmg;
+	}
+}
 /**
  * @constructor
  * @extends
  */
 class Pokemon {
+	static pokeCount = 0;
+
+	static lightning = new Energy("lightning", "fire", "fighting")	
+	static fire = new Energy("fire", "water", "lightning")
+	static fighting = new Energy("fighting", "lightning", "water")
+	static water = new Energy("water", "fighting", "fire")
+
+	static headButt = new Attack("head butt", Pokemon.fighting, 10)
+	static flare = new Attack("flare", Pokemon.fire, 30)
+	static electricRing = new Attack("electric ring", Pokemon.lightning, 50)
+	static pikaPunch = new Attack("pika punch", Pokemon.fighting, 20)
+
 	#name;
 	#energyType;
 	#hitpoints;
@@ -25,7 +55,7 @@ class Pokemon {
 	 * @param {object} weakness the energy type the pokemon is weak against.
 	 * @param {object} resistance the energy type the pokemon is strong against.
 	 */
-	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance, status){
+	constructor(name, energyType, hitpoints, health, attacks, weakness, resistance, status){		
 		this.#name = name;
 		this.#energyType = energyType;
 		this.#hitpoints = hitpoints;
@@ -34,20 +64,26 @@ class Pokemon {
 		this.#weakness = weakness;
 		this.#resistance = resistance;
 		this.#status = status;
-		pokeCount++
+		Pokemon.pokeCount++
 	}
-	death(enemy) {
-		//hier moet een function komen voor de death animatie
+	/**
+	 * logs the death message, sets enemy health to 0, sets its status to dead, subtracts 1 from pokeCount
+	 * @returns enemy health
+	 */
+	death() {
 		console.log(this.#name + " has fainted... F")
 		this.#health = 0;
 		this.#status = "dead";
-		pokeCount = pokeCount - 1;
-		return 0;
+		Pokemon.pokeCount = Pokemon.pokeCount - 1;
+		return this.#health;
 	}
 	/**
-	 * 
+	 * sets the damage for the attack  to the correct ammount for resistances and weaknesses.
+	 * checks if the enemy is dead.
+	 * kills the enemy.
 	 * @param {number} dmg the demage the attack does.
 	 * @param {object} type the energy type of the attack.
+	 * @param {object} enemy the enemy thats being attacked
 	 * @returns the pokemons new health.
 	 */
 	#newhealth(dmg, type, enemy) {
@@ -64,12 +100,12 @@ class Pokemon {
 		} else if (enemy.#status == "dead") {
 			console.log("He's already dead!")
 		}else {
-			enemy.death(enemy);
+			enemy.death();
 		}
 		//pikachu.attack(headButt, charmeleon)
 	}
 	/**
-	 * 
+	 * checks if the attacking pokemon is alive and has the attack it wants to use.
 	 * @param {object} atck the attack that is being used. 
 	 * @param {object} enemy the enemy that is being attacked.
 	 * @returns the new health of the attacked enemy.
@@ -87,7 +123,7 @@ class Pokemon {
 	 * @returns the amount of living pokemon.
 	 */
 	static getPopulation() {
-		return pokeCount;
+		return Pokemon.pokeCount;
 	}//Pokemon.getPopulation()
 	/**
 	 * logs the name and health of a pokemon object in the console.
@@ -99,84 +135,79 @@ class Pokemon {
 		/* console.log(this.#name, this.#energyType, this.#hitpoints, this.#health, this.#attack1, this.#attack2, this.#attack3, this.#attack4, this.#weakness, this.#resistance); */
 	}
 }
-/**
- * 
- */
-class energy {
-	constructor(name, weakness, resistance){
-		this.name = name;
-		this.weakness = weakness;
-		this.resistance = resistance;
-	}
-}
-/**
- * 
- */
-class attack {
-	constructor(name, energy, dmg){
-		this.name = name;
-		this.energy = energy;
-		this.dmg = dmg;
+
+class Pikachu extends Pokemon {
+	constructor() {
+		let name = "bert";
+		let energyType = Pokemon.lightning;
+		let hitpoints = 60;
+		let health = 60;
+		let attacks = [Pokemon.electricRing, Pokemon.pikaPunch];
+		let weakness = Pokemon.fire;
+		let resistance = Pokemon.fighting;
+		let status = "alive";
+		super(name, energyType, hitpoints, health, attacks, weakness, resistance, status)	
 	}
 }
 
-let lightning = new energy("lightning", "fire", "fighting")
-let fire = new energy("fire", "water", "lightning")
-let water = new energy("water", "fighting", "fire")
-let fighting = new energy("fighting", "lightning", "water")
-
-let electricRing = new attack("electric ring", lightning, 50)
-let pikaPunch = new attack("pika punch", fighting, 20)
-let headButt = new attack("head butt", fighting, 10)
-let flare = new attack("flare", fire, 30)
-
-var pikachuAttacks = [electricRing, pikaPunch];
-var charmeleonAttacks = [headButt, flare];
-
-let pikachu = new Pokemon("bert", lightning, 60, 60, pikachuAttacks, fire, fighting, "alive")
-let charmeleon = new Pokemon("geert", fire, 60, 60, charmeleonAttacks, water, lightning, "alive")
-
-function killThatPokemon() {
-	pikachu.attack(electricRing, charmeleon)
-	charmeleon.getInfo();
-
-	charmeleon.attack(flare, pikachu)
-	pikachu.getInfo();
-
-	console.log("the 2 turns have ended.")
-
-	pikachu.attack(pikaPunch, charmeleon)
-	charmeleon.getInfo();
-
-	charmeleon.attack(headButt, pikachu)
-	pikachu.getInfo();
-
-	console.log("the 2 turns have ended.")
-
-	pikachu.attack(electricRing, charmeleon)
-	charmeleon.getInfo();
-
-	charmeleon.attack(flare, pikachu)
-	pikachu.getInfo();
-
-	console.log("the 2 turns have ended.")
-
-	pikachu.attack(pikaPunch, charmeleon)
-	charmeleon.getInfo();
-
-	charmeleon.attack(headButt, pikachu)
-	pikachu.getInfo();
-
-	console.log("the 2 turns have ended.")
-
-	pikachu.attack(electricRing, charmeleon)
-	charmeleon.getInfo();
-
-	charmeleon.attack(flare, pikachu)
-	pikachu.getInfo();
-
-	console.log("the 2 turns have ended.")
+class Charmeleon extends Pokemon {
+	constructor() {
+		let name = "geert";
+		let energyType = Pokemon.fire;
+		let hitpoints = 60;
+		let health = 60;
+		let attacks = [Pokemon.headButt, Pokemon.flare];
+		let weakness = Pokemon.water;
+		let resistance = Pokemon.lightning;
+		let status = "alive";
+		super(name, energyType, hitpoints, health, attacks, weakness, resistance, status)
+	}
 }
+
+let pikaBro = new Pikachu;
+let charredCorpse = new Charmeleon;
+
+function killThatPokemon(pokemon1, pokemon2) {
+	pokemon1.attack(electricRing, pokemon2)
+	pokemon2.getInfo();
+
+	pokemon2.attack(flare, pokemon1)
+	pokemon1.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pokemon1.attack(pikaPunch, pokemon2)
+	pokemon2.getInfo();
+
+	pokemon2.attack(headButt, pokemon1)
+	pokemon1.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pokemon1.attack(electricRing, pokemon2)
+	pokemon2.getInfo();
+
+	pokemon2.attack(flare, pokemon1)
+	pokemon1.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pokemon1.attack(pikaPunch, pokemon2)
+	pokemon2.getInfo();
+
+	pokemon2.attack(headButt, pokemon1)
+	pokemon1.getInfo();
+
+	console.log("the 2 turns have ended.")
+
+	pokemon1.attack(electricRing, pokemon2)
+	pokemon2.getInfo();
+
+	pokemon2.attack(flare, pokemon1)
+	pokemon1.getInfo();
+
+	console.log("the 2 turns have ended.")
+}//killThatPokemon(pikaBro, charredCorpse)
 
 /* Hier onder is het begin van het daadwerkelijke gevecht */
 var ename = "pikachu";
