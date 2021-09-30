@@ -164,42 +164,42 @@ let pikaBro = new Pikachu("bert");
 let charredCorpse = new Charmeleon("geert");
 
 function killThatPokemon(pokemon1, pokemon2) {
-	pokemon1.attack(Pokemon.electricRing, pokemon2)
+	pokemon1.attack(Attack.electricRing, pokemon2)
 	pokemon2.getInfo();
 
-	pokemon2.attack(Pokemon.flare, pokemon1)
+	pokemon2.attack(Attack.flare, pokemon1)
 	pokemon1.getInfo();
 
 	console.log("the 2 turns have ended.")
 
-	pokemon1.attack(Pokemon.pikaPunch, pokemon2)
+	pokemon1.attack(Attack.pikaPunch, pokemon2)
 	pokemon2.getInfo();
 
-	pokemon2.attack(Pokemon.headButt, pokemon1)
+	pokemon2.attack(Attack.headButt, pokemon1)
 	pokemon1.getInfo();
 
 	console.log("the 2 turns have ended.")
 
-	pokemon1.attack(Pokemon.electricRing, pokemon2)
+	pokemon1.attack(Attack.electricRing, pokemon2)
 	pokemon2.getInfo();
 
-	pokemon2.attack(Pokemon.flare, pokemon1)
+	pokemon2.attack(Attack.flare, pokemon1)
 	pokemon1.getInfo();
 
 	console.log("the 2 turns have ended.")
 
-	pokemon1.attack(Pokemon.pikaPunch, pokemon2)
+	pokemon1.attack(Attack.pikaPunch, pokemon2)
 	pokemon2.getInfo();
 
-	pokemon2.attack(Pokemon.headButt, pokemon1)
+	pokemon2.attack(Attack.headButt, pokemon1)
 	pokemon1.getInfo();
 
 	console.log("the 2 turns have ended.")
 
-	pokemon1.attack(Pokemon.electricRing, pokemon2)
+	pokemon1.attack(Attack.electricRing, pokemon2)
 	pokemon2.getInfo();
 
-	pokemon2.attack(Pokemon.flare, pokemon1)
+	pokemon2.attack(Attack.flare, pokemon1)
 	pokemon1.getInfo();
 
 	console.log("the 2 turns have ended.")

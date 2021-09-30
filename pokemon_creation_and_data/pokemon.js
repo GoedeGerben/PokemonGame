@@ -4,16 +4,6 @@
 class Pokemon {
 	static pokeCount = 0;
 
-	static lightning = new Energy("lightning", "fire", "fighting")	
-	static fire = new Energy("fire", "water", "lightning")
-	static fighting = new Energy("fighting", "lightning", "water")
-	static water = new Energy("water", "fighting", "fire")
-
-	static headButt = new Attack("head butt", Pokemon.fighting, 10)
-	static flare = new Attack("flare", Pokemon.fire, 30)
-	static electricRing = new Attack("electric ring", Pokemon.lightning, 50)
-	static pikaPunch = new Attack("pika punch", Pokemon.fighting, 20)
-
 	#name;
 	#energyType;
 	#hitpoints;
@@ -37,7 +27,7 @@ class Pokemon {
 		this.#name = name;
 		this.#energyType = energyType;
 		this.#hitpoints = hitpoints;
-		this.#health = hitpoints;
+		this.#health = health;
 		this.#attacks = attacks;
 		this.#weakness = weakness;
 		this.#resistance = resistance;
