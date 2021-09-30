@@ -48,7 +48,7 @@ class Pokemon {
 	 * logs the death message, sets enemy health to 0, sets its status to dead, subtracts 1 from pokeCount
 	 * @returns enemy health
 	 */
-	death() {
+	#death() {
 		console.log(this.#name + " has fainted... F")
 		this.#health = 0;
 		this.#status = "dead";
@@ -78,7 +78,7 @@ class Pokemon {
 		} else if (enemy.#status == "dead") {
 			console.log("He's already dead!")
 		}else {
-			enemy.death();
+			enemy.#death();
 		}
 		//pikachu.attack(headButt, charmeleon)
 	}
